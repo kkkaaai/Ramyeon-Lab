@@ -19,7 +19,7 @@ export default function GamePage() {
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6 items-stretch">
+      <div className="flex flex-col lg:flex-row gap-6 items-stretch justify-center">
         <EggFlopGame />
         <div className="w-full lg:w-72 shrink-0">
           <Suspense

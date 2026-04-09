@@ -51,7 +51,7 @@ export function TopNav({
   };
 
   return (
-    <header className="relative bg-rl-yellow border-4 border-rl-border rounded-[15px] flex items-center justify-between px-4 pt-4 pb-3 mb-5 mt-10">
+    <header className="relative bg-rl-yellow border-4 border-rl-border rounded-[15px] flex items-center justify-between px-4 pt-4 pb-3 mb-8 mt-14">
       <ul className="flex gap-2 list-none p-0 m-0">
         {leftLinks.map((l) => (
           <li key={l.href} className={l.mobileHide ? "hidden sm:block" : ""}>
@@ -62,11 +62,12 @@ export function TopNav({
         ))}
       </ul>
 
-      {/* Centered logo — sits prominently above the nav bar center */}
+      {/* Centered logo — floats mostly above the nav bar so it never
+          overlaps the page content below. */}
       <Link
         href="/"
         aria-label="Ramyeon Labs"
-        className="absolute left-1/2 -translate-x-1/2 -top-[38px] w-[132px] h-[132px] flex items-center justify-center z-10"
+        className="absolute left-1/2 -translate-x-1/2 -top-[58px] w-[108px] h-[108px] md:w-[120px] md:h-[120px] md:-top-[64px] flex items-center justify-center z-10"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

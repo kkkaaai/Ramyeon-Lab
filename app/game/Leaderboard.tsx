@@ -56,19 +56,19 @@ export async function Leaderboard() {
   const entries = await getLeaderboard();
 
   return (
-    <div className="bg-rl-yellow-light border-4 border-rl-border rounded-xl shadow-pixel p-4 w-full">
+    <div className="bg-rl-yellow-light border-4 border-rl-border rounded-xl shadow-pixel p-4 w-full h-full flex flex-col">
       <h2 className="font-pixel text-[11px] text-rl-text text-center mb-4 tracking-wide">
         HALL OF EGGS
       </h2>
 
       {entries.length === 0 ? (
-        <div className="py-8 text-center">
-          <p className="font-pixel text-[8px] text-rl-text/50 leading-[2.4]">
+        <div className="flex-1 flex items-center justify-center">
+          <p className="font-pixel text-[8px] text-rl-text/50 leading-[2.4] text-center">
             NO SCORES YET<br />BE THE FIRST!
           </p>
         </div>
       ) : (
-        <ol className="space-y-2">
+        <ol className="space-y-2 flex-1">
           {entries.map((entry, i) => (
             <li
               key={entry.profile_id}

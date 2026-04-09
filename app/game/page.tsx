@@ -19,9 +19,9 @@ export default function GamePage() {
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6 items-start">
+      <div className="flex flex-col lg:flex-row gap-6 items-stretch">
         <EggFlopGame />
-        <div className="w-full lg:w-72 shrink-0 lg:sticky lg:top-8">
+        <div className="w-full lg:w-72 shrink-0">
           <Suspense
             fallback={
               <div className="bg-rl-yellow-light border-4 border-rl-border rounded-xl shadow-pixel p-4 text-center">

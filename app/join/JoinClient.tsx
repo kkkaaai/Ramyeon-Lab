@@ -95,6 +95,17 @@ function ProfileForm({ onDone }: { onDone: () => void }) {
         avatar_url = pub.publicUrl;
       }
 
+      // Compute the next researcher_number as MAX + 1 instead of relying on
+      // the Postgres serial sequence (which can drift when test users are
+      // seeded and cleared — we've seen it jump to #105 after cleanup).
+      const { data: maxRow } = await supabase
+        .from("profiles")
+        .select("researcher_number")
+        .order("researcher_number", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      const nextNumber = (maxRow?.researcher_number || 0) + 1;
+
       const { error } = await supabase.from("profiles").insert({
         id: user.id,
         name,
@@ -104,6 +115,7 @@ function ProfileForm({ onDone }: { onDone: () => void }) {
         linkedin_url: linkedin || null,
         website_url: website || null,
         avatar_url,
+        researcher_number: nextNumber,
       });
       if (error) throw error;
       onDone();

@@ -96,11 +96,18 @@ export function TopNav({
               <AvatarOrInitials url={researcherAvatar} name={researcherName || "??"} size={32} />
             </button>
             {menuOpen && (
-              <div className="absolute right-0 top-full mt-2 min-w-[160px] bg-rl-yellow-light border-4 border-rl-border rounded-lg shadow-pixel-dark z-20 overflow-hidden">
+              <div className="absolute right-0 top-full mt-2 min-w-[180px] bg-rl-yellow-light border-4 border-rl-border rounded-lg shadow-pixel-dark z-20 overflow-hidden">
+                <Link
+                  href="/profile/edit"
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-4 py-3 font-pixel text-[9px] text-rl-text uppercase hover:bg-rl-yellow"
+                >
+                  EDIT PROFILE
+                </Link>
                 <Link
                   href="/members"
                   onClick={() => setMenuOpen(false)}
-                  className="block px-4 py-3 font-pixel text-[9px] text-rl-text uppercase hover:bg-rl-yellow"
+                  className="block px-4 py-3 font-pixel text-[9px] text-rl-text uppercase hover:bg-rl-yellow border-t-2 border-rl-border"
                 >
                   MEMBERS
                 </Link>

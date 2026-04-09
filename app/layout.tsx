@@ -14,13 +14,18 @@ const pressStart = Press_Start_2P({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-press-start",
-  display: "swap",
+  // "block" hides pixel-font text briefly while loading instead of
+  // swapping from a fallback — prevents the ghost double-render we saw
+  // on the COOKING NOW row during the initial paint.
+  display: "block",
+  adjustFontFallback: false,
 });
 const vt323 = VT323({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-vt323",
-  display: "swap",
+  display: "block",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {

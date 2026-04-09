@@ -1,10 +1,6 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "../../../lib/supabase/admin";
 
-// Gated signup: requires a shared INVITE_CODE (set in env) before creating
-// a Supabase user. Keeps the community from being openly crawlable.
-// Existing accounts sign in as normal via /api/auth/signin below.
-
 export async function POST(req: Request) {
   const { email, password, inviteCode } = await req.json();
 

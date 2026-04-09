@@ -93,7 +93,7 @@ export function MembersClient({ profiles, meId }: { profiles: Profile[]; meId: s
                     {p.building}
                   </p>
                 )}
-                <div onClick={(e) => e.preventDefault()} className="mt-1">
+                <div onClick={(e) => e.stopPropagation()} className="mt-1">
                   <SocialButtons x={p.x_handle} linkedin={p.linkedin_url} website={p.website_url} />
                 </div>
               </Link>

@@ -38,7 +38,6 @@ function AuthForm({ onSuccess }: { onSuccess: () => void }) {
 
       if (mode === "signup") {
         if (password.length < 8) throw new Error("Password must be at least 8 characters.");
-        // Gated signup via server route — validates invite code against env.
         const res = await fetch("/api/auth/signup", {
           method: "POST",
           headers: { "content-type": "application/json" },

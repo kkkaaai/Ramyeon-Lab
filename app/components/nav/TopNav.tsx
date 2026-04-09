@@ -8,6 +8,7 @@ import { createClient } from "../../lib/supabase/client";
 const leftLinks = [
   { href: "/", label: "HOME", mobileHide: false },
   { href: "/members", label: "MEMBERS", mobileHide: true },
+  { href: "/game", label: "GAME", mobileHide: true },
 ];
 const rightLinks = [
   { href: "/queue", label: "QUEUE", mobileHide: true },

@@ -129,7 +129,7 @@ export function QueueDisplay() {
   }
 
   return (
-    <div className="fixed inset-0 overflow-auto bg-[#24211E]">
+    <div className="fixed inset-0 overflow-auto bg-[#F4E9D3]">
       <div className="max-w-5xl mx-auto p-3 md:p-8 pb-28 md:pb-24">
         {/* Header */}
         <div className="bg-rl-yellow-light border-4 border-rl-border rounded-[15px] p-3 md:p-5 mb-4 md:mb-6 flex items-center justify-between gap-3 shadow-pixel-dark">

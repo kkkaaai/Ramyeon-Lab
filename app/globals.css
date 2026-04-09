@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 html, body {
-  background-color: #24211E;
+  background-color: #F4E9D3;
   color: #2e1a11;
   min-height: 100vh;
 }
 
 body {
-  /* Fine 2px noise texture only — no bowls/chopsticks */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' shape-rendering='crispEdges'><g fill='%23f7ca5e' fill-opacity='0.035'><rect x='0' y='0' width='1' height='1'/><rect x='3' y='5' width='1' height='1'/><rect x='6' y='2' width='1' height='1'/></g></svg>");
+  /* Fine 2px noise texture — dark fleck on cream for subtle paper-grain feel */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' shape-rendering='crispEdges'><g fill='%232e1a11' fill-opacity='0.06'><rect x='0' y='0' width='1' height='1'/><rect x='3' y='5' width='1' height='1'/><rect x='6' y='2' width='1' height='1'/></g></svg>");
   background-repeat: repeat;
   background-size: 8px 8px;
 }

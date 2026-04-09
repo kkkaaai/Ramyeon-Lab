@@ -151,7 +151,7 @@ export default async function HomePage() {
                   </div>
                 )}
                 {r.building && (
-                  <div className="font-sans text-[13px] text-rl-text text-center leading-snug line-clamp-3">
+                  <div className="font-sans text-[13px] font-semibold text-rl-text text-center leading-snug line-clamp-3">
                     {r.building}
                   </div>
                 )}

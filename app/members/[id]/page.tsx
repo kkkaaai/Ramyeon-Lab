@@ -39,7 +39,7 @@ export default async function ResearcherProfilePage({
               <div className="font-pixel text-[8px] text-rl-muted uppercase">📍 {r.location}</div>
             )}
             {r.building && (
-              <div className="font-sans text-[12px] text-rl-text">
+              <div className="font-sans text-[14px] font-semibold text-rl-text">
                 <span className="font-pixel text-[7px] uppercase text-rl-muted mr-2">BUILDING:</span>
                 {r.building}
               </div>

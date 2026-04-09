@@ -89,7 +89,7 @@ export function MembersClient({ profiles, meId }: { profiles: Profile[]; meId: s
                   </div>
                 )}
                 {p.building && (
-                  <p className="font-sans text-[10px] text-rl-muted text-center line-clamp-2 mt-1">
+                  <p className="font-sans text-[11px] font-semibold text-rl-text text-center line-clamp-2 mt-1">
                     {p.building}
                   </p>
                 )}

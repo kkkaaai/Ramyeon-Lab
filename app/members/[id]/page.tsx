@@ -7,6 +7,12 @@ import { AvatarOrInitials } from "../../components/pixel/AvatarOrInitials";
 
 export const dynamic = "force-dynamic";
 
+function normalizeXHandle(val: string): string {
+  const match = val.match(/(?:https?:\/\/)?(?:www\.)?(?:x\.com|twitter\.com)\/@?([\w]+)/i);
+  if (match) return match[1];
+  return val.replace(/^@/, "");
+}
+
 // Dev-preview placeholder data (mirrors /members/page.tsx) — used when Supabase isn't configured yet.
 const PLACEHOLDER: Record<string, Profile> = {
   p1: { id: "p1", name: "Rejaws", avatar_url: null, location: "London", building: "A pixel-art coworking queue for Sunday ramen syndicates.", x_handle: "rejaws", linkedin_url: null, website_url: null, researcher_number: 1, created_at: new Date().toISOString() },
@@ -47,12 +53,12 @@ export default async function ResearcherProfilePage({
             <div className="flex flex-wrap gap-3 justify-center sm:justify-start pt-2">
               {r.x_handle && (
                 <a
-                  href={`https://x.com/${r.x_handle.replace(/^@/, "")}`}
+                  href={`https://x.com/${normalizeXHandle(r.x_handle)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="font-pixel text-[8px] text-rl-text bg-rl-yellow border-[3px] border-rl-border rounded px-3 py-2"
                 >
-                  X / @{r.x_handle.replace(/^@/, "")}
+                  X / @{normalizeXHandle(r.x_handle)}
                 </a>
               )}
               {r.linkedin_url && (

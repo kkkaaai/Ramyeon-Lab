@@ -13,14 +13,21 @@ export function SocialButtons({
   const withProtocol = (url: string) =>
     url.startsWith("http://") || url.startsWith("https://") ? url : `https://${url}`;
 
+  const xHandle = x
+    ? (() => {
+        const match = x.match(/(?:https?:\/\/)?(?:www\.)?(?:x\.com|twitter\.com)\/@?([\w]+)/i);
+        return match ? match[1] : x.replace(/^@/, "");
+      })()
+    : null;
+
   const btn =
     "inline-flex items-center justify-center w-7 h-7 shrink-0 border-[2px] border-rl-border bg-white text-rl-text rounded hover:bg-rl-yellow transition-colors font-bold text-[11px] leading-none";
 
   return (
     <div className="flex gap-2 flex-wrap justify-center">
-      {x && (
+      {xHandle && (
         <a
-          href={`https://x.com/${x.replace(/^@/, "")}`}
+          href={`https://x.com/${xHandle}`}
           target="_blank"
           rel="noreferrer"
           className={btn}

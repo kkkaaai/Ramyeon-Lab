@@ -27,7 +27,7 @@ export default async function ResearcherProfilePage({
 
   return (
     <div className="space-y-5">
-      <Link href="/" className="font-pixel text-[8px] text-rl-text-light uppercase">
+      <Link href="/" className="font-pixel text-[8px] text-rl-text uppercase">
         ← BACK
       </Link>
       <PixelPanel title={`Researcher #${String(r.researcher_number).padStart(3, "0")}`}>

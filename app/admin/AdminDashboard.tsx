@@ -45,7 +45,7 @@ export function AdminDashboard(props: {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="font-pixel text-rl-yellow text-xl uppercase">Host Dashboard</h1>
+        <h1 className="font-pixel text-rl-text text-xl uppercase">Host Dashboard</h1>
         <button onClick={logout} className="font-sans text-xs uppercase text-rl-muted">
           LOGOUT
         </button>
@@ -57,7 +57,7 @@ export function AdminDashboard(props: {
             key={t.id}
             onClick={() => setTab(t.id)}
             className={`font-pixel text-[10px] uppercase px-3 py-2 rounded border-2 ${
-              tab === t.id ? "border-rl-yellow bg-rl-yellow text-rl-base" : "border-transparent text-rl-muted"
+              tab === t.id ? "border-rl-border bg-rl-yellow text-rl-text" : "border-transparent text-rl-muted"
             }`}
           >
             {t.label}
@@ -79,7 +79,7 @@ export function AdminDashboard(props: {
             props.queue.map((q, i) => (
               <PixelCard key={q.id}>
                 <div className="flex items-center gap-4">
-                  <div className="font-display text-4xl text-rl-yellow leading-none">#{q.position}</div>
+                  <div className="font-display text-4xl text-rl-text leading-none">#{q.position}</div>
                   <div className="flex-1">
                     <div className="font-sans font-bold text-rl-text">
                       {q.profiles?.name} <span className="text-rl-muted text-xs">#{String(q.profiles?.researcher_number || 0).padStart(3, "0")}</span>
@@ -90,8 +90,8 @@ export function AdminDashboard(props: {
                     <div className="mt-1"><StatusBadge status={q.status} /></div>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <button onClick={() => call("/api/admin/queue/reorder", { id: q.id, direction: "up" })} disabled={i === 0} className="text-rl-yellow disabled:opacity-30">▲</button>
-                    <button onClick={() => call("/api/admin/queue/reorder", { id: q.id, direction: "down" })} disabled={i === props.queue.length - 1} className="text-rl-yellow disabled:opacity-30">▼</button>
+                    <button onClick={() => call("/api/admin/queue/reorder", { id: q.id, direction: "up" })} disabled={i === 0} className="text-rl-text disabled:opacity-30">▲</button>
+                    <button onClick={() => call("/api/admin/queue/reorder", { id: q.id, direction: "down" })} disabled={i === props.queue.length - 1} className="text-rl-text disabled:opacity-30">▼</button>
                   </div>
                   <div className="flex flex-col gap-2">
                     <PixelButton onClick={() => call("/api/admin/queue/status", { id: q.id, status: "cooking" })}>
@@ -115,7 +115,7 @@ export function AdminDashboard(props: {
         <div className="overflow-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-left font-pixel text-[8px] text-rl-yellow uppercase">
+              <tr className="text-left font-pixel text-[8px] text-rl-text uppercase">
                 <th className="p-2">#</th>
                 <th className="p-2">NAME</th>
                 <th className="p-2">LOCATION</th>
@@ -125,7 +125,7 @@ export function AdminDashboard(props: {
             <tbody>
               {props.profiles.map((p) => (
                 <tr key={p.id} className="border-t border-rl-muted/30">
-                  <td className="p-2 font-pixel text-[10px] text-rl-yellow">#{String(p.researcher_number).padStart(3, "0")}</td>
+                  <td className="p-2 font-pixel text-[10px] text-rl-text">#{String(p.researcher_number).padStart(3, "0")}</td>
                   <td className="p-2">{p.name}</td>
                   <td className="p-2 text-rl-muted">{p.location}</td>
                   <td className="p-2">
@@ -234,10 +234,10 @@ function PressureTestCard({ activeSession }: { activeSession: any }) {
 
   return (
     <PixelCard>
-      <h2 className="font-pixel text-rl-yellow text-sm uppercase mb-2">Pressure Test</h2>
+      <h2 className="font-pixel text-rl-text text-sm uppercase mb-2">Pressure Test</h2>
       <p className="font-sans text-xs text-rl-muted mb-4">
         Seed fake users into the active queue to stress-test tomorrow&apos;s session. Cleanup removes every{" "}
-        <code className="text-rl-yellow">seed-test-*</code> account.
+        <code className="text-rl-text">seed-test-*</code> account.
       </p>
       <div className="flex flex-wrap items-center gap-3">
         <label className="font-sans text-xs text-rl-muted">COUNT</label>
@@ -288,7 +288,7 @@ function SessionTab({ activeSession, call }: { activeSession: any; call: (p: str
       )}
 
       <PixelCard>
-        <h2 className="font-pixel text-rl-yellow text-sm uppercase mb-4">Create New Session</h2>
+        <h2 className="font-pixel text-rl-text text-sm uppercase mb-4">Create New Session</h2>
         <div className="space-y-3">
           <input placeholder="LABEL (e.g. SUNDAY 13 APRIL)" value={label} onChange={(e) => setLabel(e.target.value)} className="w-full" />
           <input type="date" value={eventDate} onChange={(e) => setEventDate(e.target.value)} className="w-full" />

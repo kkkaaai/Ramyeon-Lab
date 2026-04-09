@@ -22,7 +22,7 @@ export function ProjectsClient({ projects, canPost }: { projects: Project[]; can
   return (
     <div className="space-y-6">
       <div className="flex items-start justify-between">
-        <h1 className="font-pixel text-rl-yellow text-xl uppercase">Community Projects</h1>
+        <h1 className="font-pixel text-rl-text text-xl uppercase">Community Projects</h1>
         {canPost && (
           <PixelButton onClick={() => setOpen(true)}>POST A PROJECT +</PixelButton>
         )}
@@ -59,7 +59,7 @@ export function ProjectsClient({ projects, canPost }: { projects: Project[]; can
                   style={{ imageRendering: "pixelated" }}
                 />
               ) : (
-                <div className="w-full aspect-video bg-rl-surface-2 border border-rl-border rounded mb-3 flex items-center justify-center font-pixel text-[10px] text-rl-muted">
+                <div className="w-full aspect-video bg-white border border-rl-border rounded mb-3 flex items-center justify-center font-pixel text-[10px] text-rl-muted">
                   NO SCREENSHOT
                 </div>
               )}
@@ -72,7 +72,7 @@ export function ProjectsClient({ projects, canPost }: { projects: Project[]; can
                   {p.tags.map((t) => (
                     <span
                       key={t}
-                      className="font-pixel text-[8px] text-rl-yellow border border-rl-yellow px-2 py-1 rounded uppercase"
+                      className="font-pixel text-[8px] text-rl-text border-2 border-rl-border bg-rl-yellow px-2 py-1 rounded uppercase"
                     >
                       {t}
                     </span>
@@ -84,7 +84,7 @@ export function ProjectsClient({ projects, canPost }: { projects: Project[]; can
                   href={p.project_url}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-3 inline-block font-sans text-xs text-rl-yellow uppercase tracking-[1px]"
+                  className="mt-3 inline-block font-sans text-xs text-rl-text uppercase tracking-[1px]"
                 >
                   VIEW PROJECT →
                 </a>
@@ -148,13 +148,13 @@ function PostProjectModal({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-rl-base/80 flex items-center justify-center p-4" onClick={onClose}>
+    <div className="fixed inset-0 z-50 bg-rl-text/60 flex items-center justify-center p-4" onClick={onClose}>
       <form
         onSubmit={submit}
         onClick={(e) => e.stopPropagation()}
-        className="bg-rl-surface border-2 border-rl-yellow shadow-pixel-lg rounded p-6 max-w-lg w-full space-y-3"
+        className="bg-rl-yellow-light border-4 border-rl-border shadow-pixel-lg rounded-lg p-6 max-w-lg w-full space-y-3"
       >
-        <h2 className="font-pixel text-rl-yellow text-sm uppercase mb-2">Post a Project</h2>
+        <h2 className="font-pixel text-rl-text text-sm uppercase mb-2">Post a Project</h2>
         <input placeholder="TITLE" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full" />
         <div>
           <textarea
@@ -168,7 +168,7 @@ function PostProjectModal({ onClose }: { onClose: () => void }) {
         </div>
         <input placeholder="PROJECT URL (OPTIONAL)" value={projectUrl} onChange={(e) => setProjectUrl(e.target.value)} className="w-full" />
         <div>
-          <div className="font-pixel text-[8px] text-rl-yellow uppercase mb-2">Tags</div>
+          <div className="font-pixel text-[8px] text-rl-text uppercase mb-2">Tags</div>
           <div className="flex flex-wrap gap-2">
             {TAG_OPTIONS.map((t) => {
               const on = selectedTags.includes(t);
@@ -190,7 +190,7 @@ function PostProjectModal({ onClose }: { onClose: () => void }) {
           </div>
         </div>
         <div>
-          <div className="font-pixel text-[8px] text-rl-yellow uppercase mb-2">Screenshot (max 5MB)</div>
+          <div className="font-pixel text-[8px] text-rl-text uppercase mb-2">Screenshot (max 5MB)</div>
           <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] || null)} />
         </div>
         {err && <div className="font-sans text-xs text-rl-danger">{err}</div>}

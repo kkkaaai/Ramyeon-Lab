@@ -12,7 +12,7 @@ export default async function JoinQueuePage() {
   if (!session) {
     return (
       <PixelCard>
-        <div className="font-pixel text-rl-yellow text-sm mb-2">NO ACTIVE SESSION</div>
+        <div className="font-pixel text-rl-text text-sm mb-2">NO ACTIVE SESSION</div>
         <p className="font-sans text-sm text-rl-muted">Check back when the host activates the next session.</p>
       </PixelCard>
     );

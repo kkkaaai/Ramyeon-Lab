@@ -30,7 +30,7 @@ export default function AdminLoginPage() {
   return (
     <div className="max-w-sm mx-auto mt-12">
       <PixelCard>
-        <h1 className="font-pixel text-rl-yellow text-sm uppercase mb-4">Host Login</h1>
+        <h1 className="font-pixel text-rl-text text-sm uppercase mb-4">Host Login</h1>
         <form onSubmit={submit} className="space-y-3">
           <input
             type="password"

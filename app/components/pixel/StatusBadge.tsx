@@ -1,14 +1,14 @@
 type Status = "cooking" | "waiting" | "done" | "active" | "inactive" | "pending" | "approved" | "rejected";
 
 const styles: Record<Status, string> = {
-  cooking: "bg-rl-yellow text-rl-base border-rl-border",
-  waiting: "bg-rl-surface-2 text-rl-text border-rl-muted",
-  done: "bg-rl-surface-2 text-rl-muted border-rl-muted",
-  active: "bg-rl-yellow text-rl-base border-rl-border",
-  inactive: "bg-rl-surface-2 text-rl-muted border-rl-muted",
-  pending: "bg-rl-yellow-light text-rl-base border-rl-border",
-  approved: "bg-rl-yellow text-rl-base border-rl-border",
-  rejected: "bg-rl-danger text-rl-text border-red-900",
+  cooking: "bg-rl-yellow text-rl-text border-rl-border",
+  waiting: "bg-white text-rl-text border-rl-border",
+  done: "bg-white text-rl-muted border-rl-border",
+  active: "bg-rl-yellow text-rl-text border-rl-border",
+  inactive: "bg-white text-rl-muted border-rl-border",
+  pending: "bg-rl-yellow-light text-rl-text border-rl-border",
+  approved: "bg-rl-yellow text-rl-text border-rl-border",
+  rejected: "bg-rl-danger text-white border-red-900",
 };
 
 export function StatusBadge({ status }: { status: Status }) {

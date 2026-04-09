@@ -11,7 +11,7 @@ export function JoinClient({ hasUser }: { hasUser: boolean }) {
 
   return (
     <div className="max-w-lg mx-auto">
-      <h1 className="font-pixel text-rl-yellow text-xl uppercase mb-6">Join Ramyeon Labs</h1>
+      <h1 className="font-pixel text-rl-text text-xl uppercase mb-6">Join Ramyeon Labs</h1>
       {stage === "auth" ? (
         <AuthForm onSuccess={() => setStage("profile")} />
       ) : (
@@ -52,7 +52,7 @@ function AuthForm({ onSuccess }: { onSuccess: () => void }) {
   return (
     <PixelCard>
       <form onSubmit={submit} className="space-y-3">
-        <h2 className="font-pixel text-rl-yellow text-sm uppercase mb-2">Create Account</h2>
+        <h2 className="font-pixel text-rl-text text-sm uppercase mb-2">Create Account</h2>
         <input type="email" required placeholder="EMAIL" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full" />
         <input type="password" required placeholder="PASSWORD" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full" />
         {err && <div className="font-sans text-xs text-rl-danger">{err}</div>}
@@ -117,7 +117,7 @@ function ProfileForm({ onDone }: { onDone: () => void }) {
   return (
     <PixelCard>
       <form onSubmit={submit} className="space-y-3">
-        <h2 className="font-pixel text-rl-yellow text-sm uppercase mb-2">Create Profile</h2>
+        <h2 className="font-pixel text-rl-text text-sm uppercase mb-2">Create Profile</h2>
         <input required placeholder="NAME *" value={name} onChange={(e) => setName(e.target.value)} className="w-full" />
         <input required placeholder="LOCATION (e.g. LONDON) *" value={location} onChange={(e) => setLocation(e.target.value)} className="w-full" />
         <div>
@@ -135,7 +135,7 @@ function ProfileForm({ onDone }: { onDone: () => void }) {
         <input placeholder="LINKEDIN URL (OPTIONAL)" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} className="w-full" />
         <input placeholder="WEBSITE URL (OPTIONAL)" value={website} onChange={(e) => setWebsite(e.target.value)} className="w-full" />
         <div>
-          <div className="font-pixel text-[8px] text-rl-yellow uppercase mb-2">Avatar (Optional)</div>
+          <div className="font-pixel text-[8px] text-rl-text uppercase mb-2">Avatar (Optional)</div>
           <input type="file" accept="image/*" onChange={(e) => setAvatar(e.target.files?.[0] || null)} />
         </div>
         {err && <div className="font-sans text-xs text-rl-danger">{err}</div>}

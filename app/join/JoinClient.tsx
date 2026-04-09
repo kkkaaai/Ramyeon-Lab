@@ -170,7 +170,14 @@ function ProfileForm({ onDone }: { onDone: () => void }) {
         avatar_url,
         researcher_number: nextNumber,
       });
-      if (error) throw error;
+      if (error) {
+        if (error.code === "23505") {
+          // Profile already exists — just proceed to members.
+          onDone();
+          return;
+        }
+        throw error;
+      }
       onDone();
     } catch (e: any) {
       setErr(e.message);

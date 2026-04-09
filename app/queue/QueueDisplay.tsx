@@ -130,33 +130,35 @@ export function QueueDisplay() {
 
   return (
     <div className="fixed inset-0 overflow-auto bg-[#24211E]">
-      <div className="max-w-5xl mx-auto p-8">
+      <div className="max-w-5xl mx-auto p-3 md:p-8 pb-28 md:pb-24">
         {/* Header */}
-        <div className="bg-rl-yellow-light border-4 border-rl-border rounded-[15px] p-5 mb-6 flex items-center justify-between shadow-pixel-dark">
-          <div>
-            <h1 className="font-pixel text-rl-text text-2xl md:text-3xl">RAMYEON LABS</h1>
-            <p className="font-pixel text-rl-muted text-[9px] uppercase tracking-[2px] mt-2">
+        <div className="bg-rl-yellow-light border-4 border-rl-border rounded-[15px] p-3 md:p-5 mb-4 md:mb-6 flex items-center justify-between gap-3 shadow-pixel-dark">
+          <div className="min-w-0 flex-1">
+            <h1 className="font-pixel text-rl-text text-base md:text-3xl leading-tight">RAMYEON LABS</h1>
+            <p className="hidden md:block font-pixel text-rl-muted text-[9px] uppercase tracking-[2px] mt-2">
               Sunday Coworking Syndicate
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-rl-yellow border-4 border-rl-border shadow-pixel-sm rounded-lg px-3 py-2">
+          <div className="flex items-center gap-2 md:gap-3 shrink-0">
+            <div className="flex items-center gap-1.5 md:gap-2 bg-rl-yellow border-[3px] md:border-4 border-rl-border shadow-pixel-sm rounded-lg px-2 py-1.5 md:px-3 md:py-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/ramyeon-soup.jpeg"
                 alt="Ramyeon pack"
-                className="w-8 h-8 object-contain"
+                className="w-6 h-6 md:w-8 md:h-8 object-contain"
                 style={{ imageRendering: "pixelated" }}
               />
-              <span className="font-pixel text-rl-text text-[14px] md:text-[16px] leading-none">
+              <span className="font-pixel text-rl-text text-[12px] md:text-[16px] leading-none">
                 {rows.filter((r) => r.status === "done").length.toString().padStart(2, "0")}
               </span>
             </div>
             <button
               onClick={goFullscreen}
-              className="font-pixel text-[9px] uppercase tracking-wider bg-rl-yellow text-rl-text border-4 border-rl-border shadow-pixel-sm rounded-lg px-4 py-3 hover:translate-y-[1px]"
+              aria-label="Fullscreen"
+              className="font-pixel text-[14px] md:text-[9px] md:tracking-wider md:uppercase bg-rl-yellow text-rl-text border-[3px] md:border-4 border-rl-border shadow-pixel-sm rounded-lg px-2.5 py-1.5 md:px-4 md:py-3 hover:translate-y-[1px]"
             >
-              FULLSCREEN ⛶
+              <span className="md:hidden">⛶</span>
+              <span className="hidden md:inline">FULLSCREEN ⛶</span>
             </button>
           </div>
         </div>
@@ -168,9 +170,9 @@ export function QueueDisplay() {
         )}
 
         {!session ? (
-          <div className="bg-rl-yellow-light border-4 border-rl-border rounded-[15px] p-12 text-center shadow-pixel-dark">
-            <div className="text-6xl mb-4">🍜</div>
-            <div className="font-pixel text-rl-text text-xl md:text-3xl uppercase animate-pulse-amber">
+          <div className="bg-rl-yellow-light border-4 border-rl-border rounded-[15px] p-6 md:p-12 text-center shadow-pixel-dark">
+            <div className="text-5xl md:text-6xl mb-4">🍜</div>
+            <div className="font-pixel text-rl-text text-lg md:text-3xl uppercase animate-pulse-amber">
               NO ACTIVE SESSION
             </div>
             <div className="font-pixel text-rl-muted text-[10px] uppercase mt-6 tracking-wider">
@@ -178,16 +180,16 @@ export function QueueDisplay() {
             </div>
           </div>
         ) : (
-          <div className="space-y-5">
+          <div className="space-y-3 md:space-y-5">
             {session.label && (
-              <div className="bg-rl-yellow border-4 border-rl-border rounded-lg px-4 py-3 font-pixel text-rl-text text-sm uppercase tracking-wider text-center shadow-pixel-sm">
+              <div className="bg-rl-yellow border-4 border-rl-border rounded-lg px-3 py-2 md:px-4 md:py-3 font-pixel text-rl-text text-[11px] md:text-sm uppercase tracking-wider text-center shadow-pixel-sm">
                 {session.label}
               </div>
             )}
             {rows.filter((r) => r.status !== "done").length === 0 ? (
-              <div className="bg-rl-yellow-light border-4 border-rl-border rounded-[15px] p-16 text-center shadow-pixel-dark">
-                <div className="text-5xl mb-4">🍜</div>
-                <div className="font-pixel text-rl-text text-lg uppercase">
+              <div className="bg-rl-yellow-light border-4 border-rl-border rounded-[15px] p-8 md:p-16 text-center shadow-pixel-dark">
+                <div className="text-4xl md:text-5xl mb-4">🍜</div>
+                <div className="font-pixel text-rl-text text-base md:text-lg uppercase">
                   QUEUE EMPTY
                 </div>
                 <div className="font-pixel text-rl-muted text-[10px] uppercase mt-3">
@@ -195,7 +197,7 @@ export function QueueDisplay() {
                 </div>
               </div>
             ) : (
-              <div className="bg-rl-yellow-light border-4 border-rl-border rounded-[15px] p-5 space-y-3 shadow-pixel-dark">
+              <div className="bg-rl-yellow-light border-4 border-rl-border rounded-[15px] p-3 md:p-5 space-y-2 md:space-y-3 shadow-pixel-dark">
                 {rows.filter((r) => r.status !== "done").map((r, i, visible) => {
                   // The "front" is the first non-done row. Anyone cooking is also at the front.
                   const isFront = i === 0;
@@ -222,10 +224,10 @@ export function QueueDisplay() {
           </div>
         )}
 
-        <div className="fixed bottom-6 right-6">
+        <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6">
           <Link
             href={loggedIn ? "/queue/join" : "/join"}
-            className="font-pixel text-[10px] uppercase tracking-wider bg-rl-yellow text-rl-text px-5 py-4 border-4 border-rl-border shadow-pixel rounded-lg hover:translate-y-[2px] hover:shadow-pixel-sm transition-all"
+            className="font-pixel text-[9px] md:text-[10px] uppercase tracking-wider bg-rl-yellow text-rl-text px-4 py-3 md:px-5 md:py-4 border-[3px] md:border-4 border-rl-border shadow-pixel rounded-lg hover:translate-y-[2px] hover:shadow-pixel-sm transition-all inline-block"
           >
             JOIN QUEUE →
           </Link>

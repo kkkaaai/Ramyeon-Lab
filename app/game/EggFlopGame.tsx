@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { createClient } from "../lib/supabase/client";
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 const W = 480;
@@ -248,9 +250,19 @@ export function EggFlopGame() {
   const [bestScore, setBestScore] = useState(0);
   const [newRecord, setNewRecord] = useState(false);
 
+  // Track logged-in user via ref so die() can reference it without restarting the loop
+  const profileIdRef = useRef<string | null>(null);
+  const router = useRouter();
+
   useEffect(() => {
     const saved = localStorage.getItem("eggflop_best");
     if (saved) setBestScore(parseInt(saved, 10));
+  }, []);
+
+  useEffect(() => {
+    createClient().auth.getUser().then(({ data: { user } }) => {
+      profileIdRef.current = user?.id ?? null;
+    });
   }, []);
 
   const resetRefs = useCallback(() => {
@@ -274,7 +286,15 @@ export function EggFlopGame() {
     }
     stateRef.current = "dead";
     setUiState("dead");
-  }, []);
+
+    // Persist score to Supabase if logged in
+    if (cur > 0 && profileIdRef.current) {
+      createClient()
+        .from("game_scores")
+        .insert({ profile_id: profileIdRef.current, score: cur })
+        .then(() => router.refresh()); // refreshes the server-side leaderboard
+    }
+  }, [router]);
 
   const flap = useCallback(() => {
     const s = stateRef.current;

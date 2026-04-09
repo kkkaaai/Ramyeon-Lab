@@ -49,6 +49,16 @@ create table if not exists public.queue_entries (
   unique (session_id, profile_id)
 );
 
+create table if not exists public.game_scores (
+  id uuid primary key default gen_random_uuid(),
+  created_at timestamptz not null default now(),
+  profile_id uuid not null references public.profiles(id) on delete cascade,
+  score integer not null check (score >= 0)
+);
+
+create index if not exists game_scores_profile_id_idx on public.game_scores(profile_id);
+create index if not exists game_scores_score_idx on public.game_scores(score desc);
+
 create table if not exists public.announcements (
   id uuid primary key default gen_random_uuid(),
   created_at timestamptz not null default now(),
@@ -65,6 +75,7 @@ alter table public.projects enable row level security;
 alter table public.sessions enable row level security;
 alter table public.queue_entries enable row level security;
 alter table public.announcements enable row level security;
+alter table public.game_scores enable row level security;
 
 -- profiles
 drop policy if exists "profiles_read_all" on public.profiles;
@@ -111,6 +122,14 @@ create policy "queue_delete_own" on public.queue_entries
 -- announcements
 drop policy if exists "announcements_read_all" on public.announcements;
 create policy "announcements_read_all" on public.announcements for select using (true);
+
+-- game_scores
+drop policy if exists "game_scores_read_all" on public.game_scores;
+create policy "game_scores_read_all" on public.game_scores for select using (true);
+
+drop policy if exists "game_scores_insert_own" on public.game_scores;
+create policy "game_scores_insert_own" on public.game_scores
+  for insert with check (profile_id = auth.uid());
 
 -- =========================================================================
 -- Realtime publication

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 360" shape-rendering="crispEdges">
+  <defs>
+    <pattern id="check" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="#3C3531"/>
+      <rect x="8" y="8" width="8" height="8" fill="#3C3531"/>
+      <rect x="8" width="8" height="8" fill="#292524"/>
+      <rect y="8" width="8" height="8" fill="#292524"/>
+    </pattern>
+  </defs>
+  <rect width="840" height="360" fill="url(#check)"/>
+  <!-- floor -->
+  <rect y="280" width="840" height="80" fill="#92400E"/>
+  <rect y="272" width="840" height="8" fill="#D97706"/>
+  <!-- desks -->
+  <rect x="60" y="220" width="140" height="60" fill="#FEF3C7"/>
+  <rect x="60" y="216" width="140" height="4" fill="#92400E"/>
+  <rect x="240" y="220" width="140" height="60" fill="#FEF3C7"/>
+  <rect x="240" y="216" width="140" height="4" fill="#92400E"/>
+  <rect x="460" y="220" width="140" height="60" fill="#FEF3C7"/>
+  <rect x="460" y="216" width="140" height="4" fill="#92400E"/>
+  <rect x="640" y="220" width="140" height="60" fill="#FEF3C7"/>
+  <rect x="640" y="216" width="140" height="4" fill="#92400E"/>
+  <!-- laptops -->
+  <rect x="90" y="200" width="60" height="20" fill="#1C1917"/>
+  <rect x="94" y="204" width="52" height="14" fill="#D97706"/>
+  <rect x="270" y="200" width="60" height="20" fill="#1C1917"/>
+  <rect x="274" y="204" width="52" height="14" fill="#D97706"/>
+  <rect x="490" y="200" width="60" height="20" fill="#1C1917"/>
+  <rect x="494" y="204" width="52" height="14" fill="#D97706"/>
+  <rect x="670" y="200" width="60" height="20" fill="#1C1917"/>
+  <rect x="674" y="204" width="52" height="14" fill="#D97706"/>
+  <!-- ramyeon machine center -->
+  <rect x="380" y="140" width="80" height="80" fill="#DC2626"/>
+  <rect x="380" y="140" width="80" height="10" fill="#92400E"/>
+  <rect x="400" y="160" width="40" height="40" fill="#1C1917"/>
+  <rect x="408" y="168" width="24" height="24" fill="#FEF3C7"/>
+  <!-- steam -->
+  <rect x="408" y="120" width="6" height="16" fill="#F5F5F4" opacity="0.8"/>
+  <rect x="418" y="110" width="6" height="20" fill="#F5F5F4" opacity="0.6"/>
+  <rect x="428" y="120" width="6" height="16" fill="#F5F5F4" opacity="0.8"/>
+  <!-- ceiling lamps -->
+  <rect x="120" y="0" width="8" height="40" fill="#92400E"/>
+  <rect x="108" y="40" width="32" height="12" fill="#D97706"/>
+  <rect x="420" y="0" width="8" height="30" fill="#92400E"/>
+  <rect x="408" y="30" width="32" height="12" fill="#D97706"/>
+  <rect x="720" y="0" width="8" height="40" fill="#92400E"/>
+  <rect x="708" y="40" width="32" height="12" fill="#D97706"/>
+</svg>

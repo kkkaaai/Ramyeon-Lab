@@ -8,6 +8,19 @@ import { PixelButton } from "../../components/pixel/PixelButton";
 import { AvatarOrInitials } from "../../components/pixel/AvatarOrInitials";
 import type { Profile } from "../../lib/supabase/queries";
 
+function normalizeXHandle(val: string): string {
+  const trimmed = val.trim();
+  const match = trimmed.match(/(?:https?:\/\/)?(?:www\.)?(?:x\.com|twitter\.com)\/@?([\w]+)/i);
+  if (match) return match[1];
+  return trimmed.replace(/^@/, "");
+}
+
+function normalizeUrl(val: string): string {
+  const trimmed = val.trim();
+  if (!trimmed || /^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
 export function EditProfileClient({ profile }: { profile: Profile }) {
   const router = useRouter();
   const [name, setName] = useState(profile.name || "");
@@ -128,9 +141,10 @@ export function EditProfileClient({ profile }: { profile: Profile }) {
           <div>
             <label className="font-pixel text-[8px] text-rl-text uppercase block mb-1">X / Twitter</label>
             <input
-              placeholder="@handle"
+              placeholder="@handle or https://x.com/handle"
               value={xHandle}
               onChange={(e) => setXHandle(e.target.value)}
+              onBlur={(e) => setXHandle(normalizeXHandle(e.target.value))}
               className="w-full"
             />
           </div>
@@ -141,6 +155,7 @@ export function EditProfileClient({ profile }: { profile: Profile }) {
               placeholder="https://linkedin.com/in/..."
               value={linkedin}
               onChange={(e) => setLinkedin(e.target.value)}
+              onBlur={(e) => setLinkedin(normalizeUrl(e.target.value))}
               className="w-full"
             />
           </div>
@@ -151,6 +166,7 @@ export function EditProfileClient({ profile }: { profile: Profile }) {
               placeholder="https://..."
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
+              onBlur={(e) => setWebsite(normalizeUrl(e.target.value))}
               className="w-full"
             />
           </div>

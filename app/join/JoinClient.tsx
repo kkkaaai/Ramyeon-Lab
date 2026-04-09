@@ -5,6 +5,19 @@ import { createClient } from "../lib/supabase/client";
 import { PixelCard } from "../components/pixel/PixelCard";
 import { PixelButton } from "../components/pixel/PixelButton";
 
+function normalizeXHandle(val: string): string {
+  const trimmed = val.trim();
+  const match = trimmed.match(/(?:https?:\/\/)?(?:www\.)?(?:x\.com|twitter\.com)\/@?([\w]+)/i);
+  if (match) return match[1];
+  return trimmed.replace(/^@/, "");
+}
+
+function normalizeUrl(val: string): string {
+  const trimmed = val.trim();
+  if (!trimmed || /^https?:\/\//i.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
 export function JoinClient({ hasUser }: { hasUser: boolean }) {
   const [stage, setStage] = useState<"auth" | "profile">(hasUser ? "profile" : "auth");
   const router = useRouter();
@@ -203,9 +216,9 @@ function ProfileForm({ onDone }: { onDone: () => void }) {
           />
           <div className="font-sans text-xs text-rl-muted text-right">{building.length}/280</div>
         </div>
-        <input placeholder="@X HANDLE (OPTIONAL)" value={x} onChange={(e) => setX(e.target.value)} className="w-full" />
-        <input placeholder="LINKEDIN URL (OPTIONAL)" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} className="w-full" />
-        <input placeholder="WEBSITE URL (OPTIONAL)" value={website} onChange={(e) => setWebsite(e.target.value)} className="w-full" />
+        <input placeholder="@X HANDLE OR https://x.com/handle (OPTIONAL)" value={x} onChange={(e) => setX(e.target.value)} onBlur={(e) => setX(normalizeXHandle(e.target.value))} className="w-full" />
+        <input placeholder="LINKEDIN URL (OPTIONAL)" value={linkedin} onChange={(e) => setLinkedin(e.target.value)} onBlur={(e) => setLinkedin(normalizeUrl(e.target.value))} className="w-full" />
+        <input placeholder="WEBSITE URL (OPTIONAL)" value={website} onChange={(e) => setWebsite(e.target.value)} onBlur={(e) => setWebsite(normalizeUrl(e.target.value))} className="w-full" />
         <div>
           <div className="font-pixel text-[8px] text-rl-text uppercase mb-2">Avatar (Optional)</div>
           <input type="file" accept="image/*" onChange={(e) => setAvatar(e.target.files?.[0] || null)} />

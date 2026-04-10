@@ -104,7 +104,7 @@ export default async function HomePage() {
             <span className="text-3xl">🍜</span>
             <div>
               <div className="font-pixel text-[12px] md:text-[14px] text-rl-text uppercase leading-[1.6]">
-                See the Queue Queue Here
+                See the Queue Here
               </div>
               <div className="font-sans text-[13px] md:text-[14px] text-rl-text/80">
                 Live ramyeon cooking queue — who's up next?

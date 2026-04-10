@@ -64,6 +64,23 @@ function AuthForm({ onSuccess }: { onSuccess: () => void }) {
 
       const { error: siErr } = await supabase.auth.signInWithPassword({ email, password });
       if (siErr) throw siErr;
+
+      // Check if this user already has a profile (returning user)
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) throw new Error("Authentication succeeded but no user returned");
+
+      const { data: existing, error: profileErr } = await supabase
+        .from("profiles")
+        .select("id")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (profileErr) throw profileErr;
+      if (existing) {
+        // Hard reload to ensure server components re-fetch with the new auth session
+        window.location.href = "/members";
+        return;
+      }
+
       onSuccess();
     } catch (e: unknown) {
       setErr(e instanceof Error ? e.message : "Something went wrong");

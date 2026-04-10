@@ -172,47 +172,32 @@ function drawRamenBowl(ctx: CanvasRenderingContext2D, x: number, startY: number)
   ctx.restore();
 }
 
-function drawEgg(ctx: CanvasRenderingContext2D, x: number, y: number, vy: number) {
+function drawEgg(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  vy: number,
+  img: HTMLImageElement | null
+) {
   const angle = Math.max(-0.38, Math.min(0.85, vy * 0.058));
   ctx.save();
   ctx.translate(x, y);
   ctx.rotate(angle);
 
-  // Drop shadow
-  ctx.beginPath();
-  ctx.ellipse(4, 5, EGG_HW, EGG_HH, 0, 0, Math.PI * 2);
-  ctx.fillStyle = "rgba(0,0,0,0.18)";
-  ctx.fill();
-
-  // Egg white
-  ctx.beginPath();
-  ctx.ellipse(0, 0, EGG_HW, EGG_HH, 0, 0, Math.PI * 2);
-  ctx.fillStyle = "#fff8f0";
-  ctx.strokeStyle = "#2e1a11";
-  ctx.lineWidth = 2.5;
-  ctx.fill();
-  ctx.stroke();
-
-  // Yolk
-  ctx.beginPath();
-  ctx.arc(0, 7, 13, 0, Math.PI * 2);
-  ctx.fillStyle = "#f7ca5e";
-  ctx.strokeStyle = "#d4960e";
-  ctx.lineWidth = 2;
-  ctx.fill();
-  ctx.stroke();
-
-  // Yolk inner glow
-  ctx.beginPath();
-  ctx.arc(-3, 3, 4.5, 0, Math.PI * 2);
-  ctx.fillStyle = "rgba(255,255,200,0.45)";
-  ctx.fill();
-
-  // Shell shine
-  ctx.beginPath();
-  ctx.ellipse(7, -12, 5, 3, -0.45, 0, Math.PI * 2);
-  ctx.fillStyle = "rgba(255,255,255,0.55)";
-  ctx.fill();
+  if (img) {
+    const w = 72;
+    const h = 56;
+    ctx.drawImage(img, -w / 2, -h / 2, w, h);
+  } else {
+    // Fallback: simple egg shape while sprite loads
+    ctx.beginPath();
+    ctx.ellipse(0, 0, EGG_HW, EGG_HH, 0, 0, Math.PI * 2);
+    ctx.fillStyle = "#fff8f0";
+    ctx.strokeStyle = "#2e1a11";
+    ctx.lineWidth = 2.5;
+    ctx.fill();
+    ctx.stroke();
+  }
 
   ctx.restore();
 }
@@ -233,6 +218,7 @@ function drawScore(ctx: CanvasRenderingContext2D, score: number) {
 
 export function EggFlopGame() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const eggImgRef = useRef<HTMLImageElement | null>(null);
 
   // Game state lives in refs so the canvas loop always reads current values
   const stateRef = useRef<State>("idle");
@@ -257,6 +243,12 @@ export function EggFlopGame() {
   useEffect(() => {
     const saved = localStorage.getItem("eggflop_best");
     if (saved) setBestScore(parseInt(saved, 10));
+  }, []);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/egg-flop-sprite.png";
+    img.onload = () => { eggImgRef.current = img; };
   }, []);
 
   useEffect(() => {
@@ -410,7 +402,7 @@ export function EggFlopGame() {
       }
 
       drawGround(ctx);
-      drawEgg(ctx, EGG_X, eggYRef.current, eggVYRef.current);
+      drawEgg(ctx, EGG_X, eggYRef.current, eggVYRef.current, eggImgRef.current);
 
       if (state === "playing") drawScore(ctx, scoreRef.current);
 
